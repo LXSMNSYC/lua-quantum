@@ -26,7 +26,7 @@ local assert = require "lua-quantum.src.util.error.assert"
 local cos, sin = math.cos, math.sin
 
 return function (radius, phi)
-  assert(is_number(radius), "bad argument #1 for complex.euler (number expected)")
-  assert(is_number(phi), "bad argument #2 for complex.euler (number expected)")
+  assert(is_number(radius), "bad argument #1 for complex.polar (number expected)")
+  assert(is_number(phi), "bad argument #2 for complex.polar (number expected)")
   return new(radius * cos(phi), radius * sin(phi))
 end
