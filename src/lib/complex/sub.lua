@@ -25,17 +25,15 @@ local is_number = require "lua-quantum.src.util.is-number"
 local assert = require "lua-quantum.src.util.error.assert"
 
 return function (a, b)
-  local ca, na = is(a), is_number(a)
-  local cb, nb = is(b), is_number(b)
-  assert(ca or na, "bad argument #1 for complex.add (complex or number expected)")
-  assert(cb or nb, "bad argument #2 for complex.add (complex or number expected)")
+  local ca = is(a)
+  local cb = is(b)
+  assert(ca or is_number(a), "bad argument #1 for complex.sub (complex or number expected)")
+  assert(cb or is_number(b), "bad argument #2 for complex.sub (complex or number expected)")
   if (ca) then 
     if (cb) then
       return new(a.re - b.re, a.im - b.im)
-    elseif (nb) then
-      return new(a.re - b, a.im)
     end
-  elseif (cb) then
-    return new(a - b.re, b.im)
+    return new(a.re - b, a.im)
   end
+  return new(a - b.re, b.im)
 end
